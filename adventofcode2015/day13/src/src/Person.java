@@ -4,9 +4,9 @@ import java.util.Objects;
 public class Person {
 
     private final String name;
-    HashMap<String, Integer> neighbourHappiness = new HashMap<>();
+    private boolean isSeated = false;
+    private final HashMap<String, Integer> neighbourHappiness = new HashMap<>();// Name, happiness Number
 
-    boolean isSeated = false;
 
     public Person(String name) {
         this.name = name;

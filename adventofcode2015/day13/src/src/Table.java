@@ -1,25 +1,37 @@
-public class Table {
+import java.util.Arrays;
 
+public class Table {
     public int totalHappiness = 0;
     public Person[] peopleAtTable = new Person[4];
-
     public int MOST_LEFT_SIDE = 0;
-    public int MOST_RIGHT_SIDE = peopleAtTable.length;
-
+    public int MOST_RIGHT_SIDE = peopleAtTable.length -1;
     public Table() {}
 
     public int calculateHappinessOfTable(){
-        int totalHappiness = 0;
+        this.totalHappiness = 0;
         for (int i = 0; i < peopleAtTable.length; i++) {
             Person currentSeat = peopleAtTable[i];
             addToHappiness(getLeftPersonHappiness(i,currentSeat));
-            addToHappiness(getRightPersonHappiness(i, currentSeat));
+            //addToHappiness(getRightPersonHappiness(i, currentSeat));
         }
-        return totalHappiness;
+        this.unseatAll();
+        return this.totalHappiness;
     }
 
+    public void unseatAll(){
+        Arrays.stream(peopleAtTable).forEach(person -> person.setSeated(false));
+    }
+
+    public boolean isTableFull(){
+        for (Person person : peopleAtTable) {
+            if (person == null) {
+                return false;
+            }
+        }
+        return true;
+    }
     private void addToHappiness(int happiness){
-        totalHappiness = totalHappiness + happiness;
+        totalHappiness = totalHappiness + Math.abs(happiness);
     }
     private int getLeftPersonHappiness(int tableLocation, Person currentSeat) {
         //most left Location.
@@ -49,5 +61,15 @@ public class Table {
             happiness = happiness + currentSeat.getNeighbourHappinessByName(rightSidePerson.getName());
         }
         return happiness;
+    }
+
+    public void setPersonAtTable(Person p) {
+        for (int i = 0; i < peopleAtTable.length; i++) {
+            if(peopleAtTable[i] == null){
+                p.setSeated(true);
+                peopleAtTable[i] = p;
+                break; //breaks the for loop.
+            }
+        }
     }
 }
