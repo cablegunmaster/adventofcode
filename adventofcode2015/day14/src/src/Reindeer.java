@@ -46,7 +46,7 @@ public class Reindeer {
 
     public boolean isExhausted() {
         if(flying > 0) {
-            return flying == maxFlyingTime;
+            return flying >= maxFlyingTime;
         }
         return false;
     }
