@@ -1,46 +1,45 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AdventOfCode2ATest {
+    AdventOfCode2A app;
+
+    @BeforeEach
+    void setup() {
+        app = new AdventOfCode2A();
+    }
 
     @Test
-    public void testNumbersConsistentGoingDown_ExpectsTrue() {
-        AdventOfCode2A a = new AdventOfCode2A();
-
+    void testNumbersConsistentGoingDown_ExpectsTrue() {
         int one = 7;
         int two = 5;
 
-        assertEquals(true, a.checkConsistentGoingUpOrDown(one, two, true, false));
+        assertTrue(app.checkConsistentGoingUpOrDown(one, two, true, false));
     }
 
     @Test
-    public void testNumbersConsistentGoingDown_ExpectsFalse() {
-        AdventOfCode2A a = new AdventOfCode2A();
-
+    void testNumbersConsistentGoingDown_ExpectsFalse() {
         int one = 7;
         int two = 9;
 
-        assertEquals(false, a.checkConsistentGoingUpOrDown(one, two, true, false) );
+        assertEquals(false, app.checkConsistentGoingUpOrDown(one, two, true, false));
     }
 
     @Test
-    public void testNumbersConsistentGoingUp_ExpectsTrue() {
-        AdventOfCode2A a = new AdventOfCode2A();
-
+    void testNumbersConsistentGoingUp_ExpectsTrue() {
         int one = 7;
         int two = 9;
 
-        assertEquals(true, a.checkConsistentGoingUpOrDown(one, two, false, true) );
+        assertTrue(app.checkConsistentGoingUpOrDown(one, two, false, true));
     }
 
     @Test
-    public void testNumbersConsistentGoingUp_ExpectsFalse() {
-        AdventOfCode2A a = new AdventOfCode2A();
-
+    void testNumbersConsistentGoingUp_ExpectsFalse() {
         int one = 3;
         int two = 1;
 
-        assertEquals(false, a.checkConsistentGoingUpOrDown(one, two, false, true) );
+        assertFalse(app.checkConsistentGoingUpOrDown(one, two, false, true));
     }
 }
